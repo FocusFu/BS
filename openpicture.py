@@ -1,17 +1,16 @@
 # -*- coding: UTF-8 -*-
-#这个用来打开图片
-import numpy
-import scipy
-import PCA
+#这个用来打开图片,把所有的图片都放在test文件夹下
+import os
 from scipy.misc import imread
-im=imread('Caltech101/1/obj1__0.png')#读入一个图片
-im=imread('Caltech101/2/obj2__0.png')#读入一个图片
-a=numpy.array(im,dtype=int)
-print a[64]
-a,b=PCA.PCA(a,1)
-a=numpy.array(a,dtype=float)
-b=numpy.array(b,dtype=int)
-#print a
-print b[64]
-print numpy.shape(b)
-print numpy.shape(a)
+def getAllImages(folder):
+    assert os.path.exists(folder)
+    assert os.path.isdir(folder)
+    imageList = os.listdir(folder)
+    #imageList = [os.path.abspath(item) for item in imageList if os.path.isfile(os.path.join(folder, item))]
+    return imageList
+address='test/'
+addressList=getAllImages(address)
+dataList=[]
+for i in xrange(0,len(addressList)):
+    im=imread('test/'+addressList[i])
+    dataList.append(im)
