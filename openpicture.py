@@ -8,9 +8,10 @@ def getAllImages(folder):
     imageList = os.listdir(folder)
     #imageList = [os.path.abspath(item) for item in imageList if os.path.isfile(os.path.join(folder, item))]
     return imageList
-address='test/'
-addressList=getAllImages(address)
-dataList=[]
-for i in xrange(0,len(addressList)):
-    im=imread('test/'+addressList[i])
-    dataList.append(im)
+def openPictures(address):
+    addressList=getAllImages(address)
+    dataList=[]
+    for i in xrange(0,len(addressList)):
+        im=imread('test/'+addressList[i])
+        dataList.append(im)
+    return dataList,addressList
