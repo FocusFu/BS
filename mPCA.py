@@ -8,11 +8,14 @@ def eigValPct(eigVals,percentage):
     arraySum=sum(sortArray) #数据全部的方差arraySum
     tempSum=0
     num=0
+    return 128
     for i in sortArray:
         tempSum+=i
         num+=1
         if tempsum>=arraySum*percentage:
-            return num
+            return 128
+            #return num
+
 
 '''pca函数有两个参数，其中dataMat是已经转换成矩阵matrix形式的数据集，列表示特征；
 其中的percentage表示取前多少个特征需要达到的方差占比，默认为0.9'''

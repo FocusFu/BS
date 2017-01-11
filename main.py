@@ -4,25 +4,32 @@ import PCA
 import openpicture
 import numpy
 from sklearn.cluster import KMeans
-#from scipy.misc import imread
-#d=imread('test/obj1__0.png')
-#b=PCA.PCA(d,0.99)
-#print b.shape
-from sklearn import *
-#a,b=PCA.myPCA(d,0.99)
-#print a.shape
-#print b.shape
+import mPCA
 a = 'test/'
-im,l = openpicture.openPictures(a)
-#d,c = PCA.myPCA(im,0.9)
+imageData,addressList = openpicture.openPictures(a)
 f=[]
-for i in xrange(len(im)):
-    z,ff = PCA.myPCA(im[i],0.9)
-    f.append(numpy.transpose(z))
-K_Means = KMeans(n_clusters=2).fit(z.T)
+dataShape=[]
+for i in xrange(len(imageData)):
+    z,ff = PCA.myPCA(imageData[i],128)
+    z=z.T
+    dataShape=z.shape
+    z=z.reshape(1,128*dataShape[0])
+    f.append(z)
+    print i
+f=numpy.array(f)
+f=f.reshape(len(addressList),128*dataShape[0])
+K_Means = KMeans(n_clusters=2).fit(f)
 label=K_Means.labels_
-print K_Means.labels_
-print l
-print K_Means.labels_
+number=0
+number1=0
+for i in xrange(len(label)):
+    if label[i]:
+        number=number+1
+    else:
+        if addressList[i][3]=='1':
+            number1=number1+1
+print number
+print number1
+print len(label)
 
 
