@@ -1,3 +1,4 @@
 # -*- coding: UTF-8 -*-‘
 #用来计算准确率的
-def jjj
+def computeRate():
+    pass
