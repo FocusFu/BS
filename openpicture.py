@@ -1,6 +1,7 @@
 # -*- coding: UTF-8 -*-
 #这个用来打开图片,把所有的图片都放在test文件夹下
 import os
+import numpy
 from scipy.misc import imread
 def getAllImages(folder):
     assert os.path.exists(folder)
@@ -13,5 +14,5 @@ def openPictures(address):
     dataList = []
     for i in xrange(0 , len(addressList)):
         im = imread('test2/'+addressList[i])
-        dataList.append(im)
+        dataList.append(im.T)
     return dataList , addressList
