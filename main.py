@@ -6,20 +6,21 @@ import numpy
 from sklearn.cluster import KMeans
 import arrange
 import mPCA
-a = 'test/'
+a = 'test2/'
 imageData,addressList = openpicture.openPictures(a)
 imageData,addressList=arrange.arrangeData(imageData,addressList)#排序
 f=[]
 dataShape=[]
 for i in xrange(len(imageData)):
-    z,ff = PCA.myPCA(imageData[i],128)
+    z,ff = PCA.myPCA(imageData[i],5)
+    #z, ff = mPCA.pca(imageData[i],16)
     z=z.T
     dataShape=z.shape
     z=z.reshape(1,128*dataShape[0])
     f.append(z)
 f=numpy.array(f)
 f=f.reshape(len(addressList),128*dataShape[0])
-K_Means = KMeans(n_clusters=3).fit(f)
+K_Means = KMeans(n_clusters=2).fit(f)
 label=K_Means.labels_
 number=0
 number1=0

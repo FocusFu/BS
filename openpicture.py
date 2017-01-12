@@ -12,6 +12,6 @@ def openPictures(address):
     addressList = getAllImages(address)
     dataList = []
     for i in xrange(0 , len(addressList)):
-        im = imread('test/'+addressList[i])
+        im = imread('test2/'+addressList[i])
         dataList.append(im)
     return dataList , addressList
