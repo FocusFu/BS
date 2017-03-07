@@ -12,7 +12,7 @@ imageData,addressList=arrange.arrangeData(imageData,addressList)#排序
 f=[]
 dataShape=[]
 for i in xrange(len(imageData)):
-    #z,ff = PCA.myPCA(imageData[i],5)
+    z,ff = PCA.myIncrementalPCA(imageData[i],16)
     #z, ff = mPCA.pca(imageData[i],16)
     z=imageData[i]
     z=z.T
