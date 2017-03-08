@@ -23,6 +23,15 @@ def myIncrementalPCA(data,percent):
     rangeData=maxData-minData
     lowDData=lowDData/rangeData
     return lowDData , reDData
-
-#def myKernelPCA(data,percent):
-    #kernelpca = KernelPCA
+#核PCA参数比较复杂很麻烦，暂时只考虑一个内核
+def myKernelPCA(data,percent):
+    kernelpca = KernelPCA(n_components = percent,kernel = "poly")
+    lowDData = np.array(kernelpca.fit_transform(data))
+    reDData = kernelpca.inverse_transform(lowDData)
+    maxData = np.max(lowDData, axis=0)
+    minData = np.min(lowDData, axis=0)
+    rangeData = maxData - minData
+    lowDData = lowDData / rangeData
+    return lowDData, reDData
+def mySparsePCA(data,percent):
+    pass

@@ -5,6 +5,7 @@ import openpicture
 import numpy
 from sklearn.cluster import KMeans
 import arrange
+import clustering
 import mPCA
 a = 'test2/'
 imageData,addressList = openpicture.openPictures(a)
@@ -12,8 +13,8 @@ imageData,addressList=arrange.arrangeData(imageData,addressList)#排序
 f=[]
 dataShape=[]
 for i in xrange(len(imageData)):
-    z,ff = PCA.myIncrementalPCA(imageData[i],16)
-    #z, ff = mPCA.pca(imageData[i],16)
+    #z,ff = PCA.myKernelPCA(imageData[i],16)
+    z, ff = mPCA.pca(imageData[i],16)
     z=imageData[i]
     z=z.T
     dataShape=z.shape
@@ -21,8 +22,9 @@ for i in xrange(len(imageData)):
     f.append(z)
 f=numpy.array(f)
 f=f.reshape(len(addressList),128*dataShape[0])
-K_Means = KMeans(n_clusters=2).fit(f)
-label=K_Means.labels_
+#K_Means = KMeans(n_clusters=2).fit(f)
+#label=K_Means.labels
+label = clustering.myMeanShift(f,0.9)
 number=0
 number1=0
 list1=[]
